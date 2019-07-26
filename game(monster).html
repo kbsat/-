@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>몬스터 길들이기 ver2</title>
+    <style>
+      h1{
+        text-align: center;
+        font-size:45px;
+        border-bottom:3px solid gray;
+        padding: 20px;
+        padding-bottom: 40px;
+      }
+      .intro{
+        text-align:center;
+        font-size:20px;
+        font-weight:bold;
+      }
+      .monster_img{
+        text-align:center;
+      }
+      .act_container{
+        text-align: center;
+      }
+      /* .button{
+        margin:50px;
+      } */
+      #hit_button{
+        /* border:none;
+        width:150px;
+        color:white;
+        background-color: blue; */
+        width:100px;
+        background-color: #f8585b;
+        border: none;
+        color:#fff;
+        padding: 15px 0;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        margin: 4px;
+      }
+      #feed_button{
+        width:100px;
+        background-color: #d966ff;
+        border: none;
+        color:#fff;
+        padding: 15px 0;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        margin: 4px;
+        cursor: pointer;
+      }
+      #reset_button{
+        width:100px;
+        background-color: gray;
+        border: none;
+        color:#fff;
+        padding: 15px 0;
+        text-align: center;
+        text-decoration: none;
+        display: none;
+        font-size: 15px;
+        margin: 4px;
+        cursor: pointer;
+        margin
+      }
+
+    </style>
+    <script>
+      var hit,feed;
+      hit = 0;
+      feed = 0;
+      function Clickhit(){
+        hit++;
+        if ( hit < 3){
+          document.getElementById("result_img").src="맞은몬스터.jpg";
+          var hitResult = document.getElementById("result_text");
+          hitResult.innerHTML = "몬스터를 때렸습니다!<br>현재 폭력수치:"+hit+"<br>현재 배부름수치:"+feed;
+        }
+        else{
+          document.getElementById("result_img").src="잡았다요놈.jpg";
+          var hitResult = document.getElementById("result_text");
+          hitResult.innerHTML = "폭력 신고를 받아 경찰에 잡혔습니다!";
+
+          document.getElementById("hit_button").style.display="none";
+          document.getElementById("feed_button").style.display="none";
+          document.getElementById("reset_button").style.display="inline-block";
+        }
+
+      }
+      function Clickfeed(){
+        feed++;
+        if ( feed < 3){
+          document.getElementById("result_img").src="기쁜몬스터.jpg";
+          var feedResult = document.getElementById("result_text");
+          feedResult.innerHTML = "몬스터에게 밥을 주었습니다!<br>현재 폭력수치:"+hit+"<br>현재 배부름수치:"+feed;
+        }
+        else{
+          document.getElementById("result_img").src="죽은몬스터(배부름).jpg";
+          var feedResult = document.getElementById("result_text");
+          feedResult.innerHTML = "배가 너무 불러 몬스터가 죽어버렸습니다!";
+
+          document.getElementById("hit_button").style.display="none";
+          document.getElementById("feed_button").style.display="none";
+          document.getElementById("reset_button").style.display="inline-block";
+        }
+      }
+      function Clickreset(){
+        window.location.reload();
+      }
+    </script>
+  </head>
+  <body>
+    <h1>
+      몬스터 길들이기 ver.2
+    </h1>
+    <div class="intro">
+      <p id="result_text">몬스터를 발견했습니다. 어떤 행동을 취하시겠습니까?</p>
+    </div>
+    <div class="monster_img">
+      <img id="result_img" src="기본몬스터.jpg" width="400px">
+    </div>
+    <div class="act_container">
+      <span class="button">
+        <input type="button" value="다시하기" id="reset_button" onclick="Clickreset()">
+      <span class="button">
+        <input type="button" value="때리기" id="hit_button" onclick="Clickhit()">
+      </span>
+      <span class="button">
+        <input type="button" value="밥주기" id="feed_button" onclick="Clickfeed()">
+      </span>
+    </div>
+  </body>
+</html>
